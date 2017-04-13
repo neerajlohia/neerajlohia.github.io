@@ -1,51 +1,53 @@
-nav ul li:hover {
+nav ul li a:hover {
    			background-color: #263238;
-   			color: black;
+   			color: black; 
 		}
 
+
+
 a.blinkk {
-  -moz-animation-duration: 400ms;
+  -moz-animation-duration: 850ms;
   -moz-animation-name: blink;
   -moz-animation-iteration-count: infinite;
   -moz-animation-direction: alternate;
   
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 850ms;
   -webkit-animation-name: blink;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
   
-  animation-duration: 400ms;
+  animation-duration: 850ms;
   animation-name: blink;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
 @-moz-keyframes blink {
-  from {
+  0% {
     opacity: 1;
   }
   
-  to {
+  60% {
     opacity: 0;
   }
 }
 
 @-webkit-keyframes blink {
-  from {
+  0% {
     opacity: 1;
   }
   
-  to {
+  60% {
     opacity: 0;
   }
 }
 
 @keyframes blink {
-  from {
+  0% {
     opacity: 1;
   }
   
-  to {
+  60% {
     opacity: 0;
   }
 }
