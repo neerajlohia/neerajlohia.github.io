@@ -1,11 +1,5 @@
-nav ul li a:hover {
-   			background-color: #263238;
-   			color: black; 
-		}
 
-
-
-a.blinkk {
+.blinkk {
   -moz-animation-duration: 850ms;
   -moz-animation-name: blink;
   -moz-animation-iteration-count: infinite;

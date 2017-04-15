@@ -2867,6 +2867,7 @@ ul.staggered-list li {
 
 .page-footer {
   padding-top: 20px;
+  padding-bottom: 1px;
   background-color: #ee6e73;
 }
 
@@ -4772,7 +4773,6 @@ small {
 .card .card-action {
   position: relative;
   background-color: inherit;
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
   padding: 16px 24px;
 }
 

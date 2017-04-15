@@ -1,7 +1,7 @@
 <html>
 <head>
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="css/materialize.min.css">
+	<link rel="stylesheet" href="css/materialize.css">
 
 	<!-- css for blinkk and custom nav-bar hover-->
 	<link rel="stylesheet" href="css/addedCss.css"
@@ -17,34 +17,38 @@
 </title>
 <body bgcolor="#263238" text="#b4c1ff">
 
-	
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+	  <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+
+	<script type="text/javascript" src="js/materialize.js"></script>
+
 
 	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-
 	
 	  <div class="navbar-fixed">
 	    <nav>
 	    <div class="nav-wrapper blue-grey darken-4">
 	    	<div style="margin-left: 30%">
-	        	<a href="#!" class="brand-logo pink-text accent-3 ">mrm:~$</a><a href="#!" class="brand-logo blinkk pink-text accent-3" style="margin-left: 8.7%">_</a>
+	        	<a href="#!" class="brand-logo pink-text accent-3 ">mrm:~$<e class="blinkk">_</e></a>
 	        </div>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-	        <ul class="left hide-on-med-and-down" style="margin-left: 50%">
-	          <li><a href="#" class="pink-text accent-3">random</a></li>
+	        <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 50%">
+	          <li class="active"><a href="#" class="pink-text accent-3">random</a></li>
 	          <li><a href="files/cv.pdf" class="pink-text accent-3">resume</a></li>
 	          <li><a href="#" class="pink-text accent-3">contact me</a></li>
 	        </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="sass.html" class="pink-text">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
 	    </div>
 	    </nav>
  	 </div>
 <!-- Main Body -->
-<div style="margin-top: 5%; margin-left: 17%; margin-right: 17%; background-color: #004d40">
+<div style="margin-top: 5%; margin-bottom: 5%; margin-left: 14%; margin-right: 14%; background-color: #1a2327">
 
-		Hi there!
 
-      <div class="row">
+      <div class="row" style="margin-left: 5%; margin-right: 5%; padding-top: 5%; padding-bottom: 5%">
         <div class="col s12">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
@@ -52,6 +56,11 @@
               <p>I am a very simple card. I am good at containing small bits of information.
               I am convenient because I require little markup to use effectively.</p>
             </div>
+           
+            <div class="card-action center">
+              <a href="#" class="pink-text accent-3" >Read Me</a>
+            </div>
+
           </div>
         </div>
 
@@ -78,9 +87,9 @@
 
 </div>
 
-
-        <div  style="margin-up: 0%; background-color: orange; position: absolute; bottom: 0; width: 100%;" >
-          <div style="margin-left: 25%; margin-right: 17%;">
+<!--
+        <div  style="background-color: #212121;  width: 100%;" >
+          <div style="margin-left: 20%; margin-right: 15%;">
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Footer Content</h5>
@@ -98,8 +107,33 @@
             </div>
           </div>
           </div>
-        </div>
+       -->
             
 
+
+        <footer class="page-footer" style="background-color: #a5003a">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+           
+<script> 
+$( document ).ready(function(){$(".button-collapse").sideNav();})
+
+</script>
 </body>
 </html>
