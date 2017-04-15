@@ -1,4 +1,16 @@
-
+.maindiv{
+  margin-top: 5%; 
+  margin-bottom: 5%; 
+  margin-left: 14%; 
+  margin-right: 14%; 
+  background-color: #263238;
+}
+.mainrowdiv{
+  margin-left: 5%; 
+  margin-right: 5%; 
+  padding-top: 5%; 
+  padding-bottom: 5%;
+}
 .blinkk {
   -moz-animation-duration: 850ms;
   -moz-animation-name: blink;

@@ -2015,6 +2015,10 @@
   background-color: #455a64 !important;
 }
 
+.blue-grey.custom {
+  background-color: #1e282c !important;
+}
+
 .blue-grey-text.text-darken-2 {
   color: #455a64 !important;
 }
@@ -4116,7 +4120,7 @@ nav ul a span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #1e282c;
   width: 100%;
   height: 56px;
   line-height: 56px;
