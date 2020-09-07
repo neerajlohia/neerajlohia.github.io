@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>codex</title>
+    <link>/</link>
+    <description>Recent content on codex</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Thu, 20 Aug 2020 13:17:14 +0530</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How DNS really works</title>
+      <link>/blog/how-dns-works/</link>
+      <pubDate>Thu, 20 Aug 2020 13:17:14 +0530</pubDate>
+      
+      <guid>/blog/how-dns-works/</guid>
+      <description>Purpose of DNS Internet is a big place. A big set of protocols and physical infrastructre is in place that enables us to use it at such ease. Every device connected to the internet has an IP address assigned to it. This device can host plethora of services which anyone over the internet can access by connecting to it using it&amp;rsquo;s IP address. For example, Wikipedia has made its website accessible on IP address 103.</description>
+    </item>
+    
+  </channel>
+</rss>

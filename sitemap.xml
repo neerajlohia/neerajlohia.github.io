@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dig/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dns/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/domain/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/how-dns-works/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-20T13:17:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+  </url>
+  
+</urlset>
