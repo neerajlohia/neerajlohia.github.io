@@ -66,8 +66,8 @@
       "copyrightYear" : "2020",
       "datePublished": "2020-08-20 13:17:14 \u002b0530 IST",
       "dateModified" : "2020-08-20 13:17:14 \u002b0530 IST",
-      "url" : "\/blog\/how-dns-works\/",
-      "wordCount" : "2521",
+      "url" : "\/blog\/how-dns-really-works\/",
+      "wordCount" : "2731",
       "keywords" : ["Blog"]
     }
   
@@ -115,9 +115,9 @@
           <article class="post__content">
               
 <h2 id="purpose-of-dns">Purpose of DNS<a class="anchor" href="#purpose-of-dns">#</a></h2>
-<p>Internet is a big place. A big set of protocols and physical infrastructre is in place that enables us to use it at such ease. Every device connected to the internet has an IP address assigned to it. This device can host plethora of services which anyone over the internet can access by connecting to it using it&rsquo;s IP address.
-For example, Wikipedia has made its website accessible on IP address 103.102.166.224 (IP address might be different for you), now if I want to access wikipedia I must know this not so easy to memorize long string of numbers so that I can reach out to it. Pffff.</p>
-<p>This would straight away put limitation on accessing all the cool stuff on the Internet. We would rather have some sort of a mechanism which would remember these details for us. So just like a Contact list in a phone, DNS (short for Domain Name System) maintains bunch of information about the server name(or rather domain name) which is invisibly fetched by your web browser (just an example) whenever you open any website.</p>
+<p>Internet is a big place. A large set of protocols and physical infrastructure is in place that enables us to use it at such an ease. Every device connected to the internet has an IP address assigned to it. This device can host a plethora of services which anyone over the internet can access by connecting to it using it&rsquo;s IP address.
+For example, Wikipedia has made its website accessible on IP address 103.102.166.224 (the IP address might be different for you), but it is not convenient to memorize a long string of numbers so that I can reach out to it. Pffff.</p>
+<p>This would straight away put limitations on accessing all the cool stuff on the Internet. It will be simpler to use <code>wikipedia.org</code> instead of an IP address. We would rather have some sort of a mechanism which would remember these mappings for us. So just like a Contact list in a phone, DNS (short for Domain Name System) maintains bunch of information about the server name(or rather domain name) which is invisibly queried by your web browser whenever you open any website.</p>
 <p>Technically DNS is a <mark>distributed, hierarchical database</mark> spread across the internet with mechanisms to interact - insert and retrieve information - with this database. Information in DNS is stored as resource records (RR) which is essentially a mapping between the domain name and some data. Some resource record types are :</p>
 <ul>
 <li><code>A</code>		: maps domain name to an IPv4 address.</li>
@@ -126,58 +126,58 @@ For example, Wikipedia has made its website accessible on IP address 103.102.166
 <li><code>NS</code>		: maps domain name with its authorized nameservers.</li>
 <li><code>SOA</code>		: specifes the start of zone for a domain.</li>
 </ul>
-<p>Having resource records for things more than just an IP address is important to bring a hierarchical structure to DNS and make domain name management easy. DNS also bring consistency in accessiblity by maintaining the same server name in case the IP address of the server is changed.</p>
+<p>Having resource records for things more than just an IP address is important to bring a hierarchical structure to DNS and make domain name management easy. DNS also brings consistency in accessiblity by maintaining the same server name in case the IP address of the server is changed.</p>
 <p>DNS is a critical structure for internet and internet, as we know it, would crumble without DNS.</p>
 <h3 id="breakdown-of-a-url">Breakdown of a URL<a class="anchor" href="#breakdown-of-a-url">#</a></h3>
-<p>Before we begin with how a URL (or a server name) is resolved by DNS, lets first understand a URL and figure out which part of a URL is resolved by DNS. Consider the below URL</p>
+<p>Before we begin, lets first understand a URL and figure out which part of a URL is resolved by DNS. Consider the below URL</p>
 <pre><code>https://www.youtube.com/watch?v=dQw4w9WgXcQ
 </code></pre>
 <ul>
 <li>&lsquo;https&rsquo; is the protocol to be used for communicating with the web service once the connection is established.</li>
-<li>&lsquo;<a href="http://www.youtube.com">www.youtube.com</a>&rsquo; is the domain name which represents the device hosting the web service and needs to be resolved. It is also called Fully Qualified Domain Name (FQDN).</li>
+<li>&lsquo;<a href="http://www.youtube.com">www.youtube.com</a>&rsquo; is the domain name which represents the device hosting the web service and needs to be resolved to an IP address. It is also called Fully Qualified Domain Name (FQDN).</li>
 <li>&lsquo;watch?v=dQw4w9WgXcQ&rsquo; is the resource or page we want to access in the web service.</li>
 </ul>
-<p>The FQDN string is made up of labels separated by a single dot. Traditionally FQDNs end with a dot which representing the root domain. Both &lsquo;<a href="http://www.youtube.com">www.youtube.com</a>&rsquo; and &lsquo;<a href="http://www.youtube.com">www.youtube.com</a><mark>.</mark>&rsquo; are same. The end dot is omitted in representation but internally all resolution occur with the end dot in place.</p>
+<p>The FQDN string is made up of labels separated by a single dot. Traditionally FQDNs end with a dot which represents the root domain. Both &lsquo;<a href="http://www.youtube.com">www.youtube.com</a>&rsquo; and &lsquo;<a href="http://www.youtube.com">www.youtube.com</a><mark>.</mark>&rsquo; are same. The dot in the end can be omitted in representation but internally all resolution occurs with the end dot in place.</p>
 <p><img src="/blog/images/url-breakdown.png" alt="image"></p>
 <h2 id="hierarchy-in-dns">Hierarchy in DNS<a class="anchor" href="#hierarchy-in-dns">#</a></h2>
 <h3 id="domain-names">Domain Names<a class="anchor" href="#domain-names">#</a></h3>
-<p>Domain name is a realm within the internet where the entity owning the domain name possess administrative power over it - create or update resource records in DNS for the corresponding domain name. Hierarchy can be seen in a domain name and can be visualized as a tree. <code>wikipedia.org.</code> is an example of a domain name.
-The hierarchy of domains descend from the right to the left label in the FQDN. Each label to the left specifies a sub-domain of the domain on the right. First domain in the hierarchy is the root domain (represented by a dot .).</p>
-<p><code>com</code>, <code>org</code>, <code>in</code>, <code>io</code> are some sub-domain under the root domain. These first level of domains under the root domain are called Top Level Domains (TLDs) and are independent for operation from the root domain.
-Sub-domains of the TLDs are available to the users of internet for purchase for example <code>wikipedia</code> is the subdomain of TLD <code>org.</code> which must have been purchased at some point of time.</p>
+<p>A domain name is a realm within the internet where the entity owning the domain name possesses administrative power over it - create or update resource records in DNS for the corresponding domain name. Hierarchy can be seen in a domain name and can be visualized as a tree. <code>wikipedia.org.</code> is an example of a domain name.
+The <mark>hierarchy</mark> of domains descend from the right to the left label in the FQDN. Each label to the left specifies a sub-domain of the domain on the right. First domain in the hierarchy is the root domain (represented by a dot .).</p>
+<p><code>com</code>, <code>org</code>, <code>in</code>, <code>io</code> are some sub-domains under the root domain. This first level of domains under the root domain are called Top Level Domains (TLDs) and are independent for operation from the root domain.
+Sub-domains of the TLDs are available to the users of internet for purchase. For example <code>wikipedia</code> is the subdomain of TLD <code>org.</code> which must have been purchased at some point of time.</p>
 <p><img src="/blog/images/hierarchy-dns.png" alt="image"></p>
 <ul>
 <li><code>com</code>, <code>org</code>, <code>in</code> are subdomains of root domain.</li>
-<li><code>youtube</code>, <code>duckduckgo</code> are subdomain of <code>com</code> or <code>com.</code> domain.</li>
+<li><code>youtube</code>, <code>duckduckgo</code> are subdomains of <code>com</code> or <code>com.</code> domain.</li>
 <li><code>www</code>, <code>music</code> are subdomains of <code>youtube.com</code> or <code>youtube.com.</code> domain.</li>
 </ul>
-<p>Having authority over a domain name gives the ability to map that domain to an IP address of some network device(which may be running some network services), to create sub-domains. Domain owner can even choose to delegate authority of a sub-domain to a different entity. This is what TLDs generally do when they sell a sub-domain.</p>
+<p>Having authority over a domain name gives the ability to map that domain to an IP address of some network device(which may be running some network services) or to create sub-domains. Domain owner can even choose to delegate authority of a sub-domain to a different entity. For example if Google feels like then it can sell domain <code>music.youtube.com</code> and delegate full authority of the domain to the buyer. This is what TLDs generally do when they sell a sub-domain.</p>
 <h3 id="zones">Zones<a class="anchor" href="#zones">#</a></h3>
-<p>A zone is the set of sub-domains including the domain itself over which a domain owner exercises full control. For example The root zone just has the root domain. ICANN organization, which manages the root zone, has the authority to create more TLDs (which would be subdomains) as they have done in the past.</p>
-<p>Sub-domains of root domain <code>com</code>, <code>org</code> are completely independent from the root domain in terms of authority. This means that the root domain is not affected by any mean if any new sub-domain is added under the <code>com</code> domain as the <code>com</code> domain is outside its jurisdiction. <code>youtube.com</code> is in a separate zone. Domains <code>www.youtube.com</code> and <code>music.youtube.com</code> are in the same zone as <code>youtube.com</code>. If <code>youtube.com</code> wanted to add a new service, say for live streaming, they can setup <code>stream.youtube.com</code> without bothering the parent domain <code>com</code>.</p>
+<p>A zone is the set of sub-domains including the domain itself over which a domain owner exercises full control. The root zone just has the root domain. ICANN organization, which manages the root zone, has the authority to create more TLDs (which would be subdomains) as they have done in the past.</p>
+<p>Sub-domains of root domain <code>com</code>, <code>org</code> are completely independent from the root domain in terms of authority. This means that the root domain is not affected by any means if any new sub-domain is added under the <code>com</code> domain, as the <code>com</code> domain is outside its jurisdiction. <code>facebook.com</code> is in a separate zone. Domains <code>apps.facebook.com</code> and <code>developers.facebook.com</code> are in the same zone as <code>facebook.com</code>. If <code>facebook.com</code> wanted to add a new service, say for live tv, they can setup <code>tv.facebook.com</code> in the same zone without bothering the parent domain <code>com</code>.</p>
 <p><img src="/blog/images/zones-dns.png" alt="image"></p>
 <p>It is possible for a domain to include just a few sub-domains under its zone and delegate authority for the other subdomains.</p>
 <h3 id="authoritative-nameserver">Authoritative Nameserver<a class="anchor" href="#authoritative-nameserver">#</a></h3>
-<p>Each of the domain have alteast 2 (for redundancy) dedicated authoritative nameservers associated with them. These nameservers maintain, serve information for the domain and subdomains and is the component in DNS resolution which is queried for resource records (domain - data mapping) for the domains. The nameservers enables the DNS to be distributed as the domains don&rsquo;t have to rely on a single server to get resolved.</p>
-<p>It is up to the administrators to configure the nameservers as upto their choice. Typically big organizations maintain their own authoritative nameservers. But it is very common for a domain name to have its authoritative nameserver shared between other domains. In other words, many separate, non related domains names could be using shared nameservers.</p>
+<p>Each of the domains have alteast 2 (for redundancy) dedicated authoritative nameservers associated with them. These nameservers maintain and serve resource records for the domain and its subdomains. If there is a query for a domain name then it will be ultimately served by its authoritative nameservers.</p>
+<p>Authoritative nameservers are important components of DNS as they form the nodes of the distributed, hierarchical database that is queried upon for domain name resolution. They make DNS distributed as each domain name can have its own nameservers and is not tied to a single central database.</p>
+<p>It is up to the administrators to configure the nameservers as per their choice. Big organizations may maintain their own authoritative nameservers that manage resource records exclusive to their domains. But it is very common for a domain name to have its authoritative nameserver shared between other domains. In other words, many separate, non related domains names could be using shared nameservers.</p>
 <h2 id="dns-resolution-in-action">DNS Resolution in Action<a class="anchor" href="#dns-resolution-in-action">#</a></h2>
-<p>DNS resolution is initiated by a DNS resolver seeking for some information (like an IP address) of a domain name. It creates a DNS query and sends it to the DNS server whose purpose is to resolve DNS queries for the DNS resolver. We can configure our devices to use specific DNS servers. Most of the Internet Service Providers provide a DNS server which is automatically used as default. <code>8.8.8.8</code> is a very popular, easy to remember, DNS server provided by Google. Below image demonstrates the flow of queries and responses in DNS resolution.</p>
+<p>DNS resolution is initiated by a DNS client seeking for some information (like an IP address) of a domain name. It creates a DNS query and sends it to the DNS server who then resolves the query for the DNS client. When we connect to Internet, our network configurations hold default DNS Servers which might be provided by our ISP. We can even use DNS servers of our choice. <code>8.8.8.8</code> is a very popular, easy to remember, DNS server provided by Google.</p>
+<p>Below image demonstrates the flow of queries and responses in DNS resolution.</p>
 <p><img src="/blog/images/dns-resolution.png" alt="image"></p>
 <ol>
-<li>The client (DNS resolver) seeking Type <code>A</code> resource records, which holds IP address, for the domain en.wikipedia.org creates a DNS query and sends it to the configured DNS server.</li>
-<li>DNS Server starts resolving the domain name one label at a time from right to left starting with the root domain. How would it resolve the top in the hierarchy root domain? DNS servers have nameservers of root domain stored with them to begin with. Next in line would be <code>org.</code> It queries one of the authoritative nameservers of root domain asking for nameservers of <code>org.</code> Note that it searches for nameserver because they hold all the information for the domain.</li>
+<li>The client seeking Type <code>A</code> resource records, which holds IP address, for the domain en.wikipedia.org creates a DNS query and sends it to the configured DNS server.</li>
+<li>To find the IP address of <code>en.wikipedia.org</code> DNS server must first find the nameservers for the domain. In order to find that nameserver, the DNS Server starts resolving the domain name one label at a time from right to left starting with the root domain whose nameservers are stored with the DNS server to begin with. Next in line would be <code>org.</code> It queries one of the authoritative nameservers of root domain asking for nameservers of <code>org.</code> Note that it searches for nameserver first because they hold all the information for the domain.</li>
 <li>The queried nameserver returns the result to the DNS server.</li>
 <li>DNS server next queries one of the nameservers for the <code>org.</code> domain asking for nameservers of <code>wikipedia.org</code></li>
 <li>The queried nameserver returns a suitable result to the DNS server.</li>
 <li>At last the DNS server queries the <code>wikipedia.org</code> nameserver asking for Type <code>A</code> records of <code>en.wikipedia.org</code></li>
 <li>The queried nameserver responds with the Type <code>A</code> resource record to the DNS server.</li>
-<li>DNS server replies this result to the DNS resolver which had raised the query.</li>
+<li>DNS server replies this result to the DNS client which had raised the query.</li>
 </ol>
-<p>To spare the nameservers from the load of repititive queries, the DNS servers implement the cache mechanism and only queries the nameservers in hierarchy if it doesn&rsquo;t have the resource record requested by the resolver in its cache. To explain the DNS resolution with all of its components, the above illustration doesn&rsquo;t take cache into consideration. In case the DNS Servers and Namerservers does not have the requested info they&rsquo;ll reply with a suitable answer.</p>
-<p>recursive
-iterative</p>
+<p>To spare the nameservers from the load of repititive queries, the DNS servers implement the cache mechanism and only query the nameservers in hierarchy if they don&rsquo;t have the resource record requested by the client in its cache. To explain the DNS resolution with all of its components, the above illustration doesn&rsquo;t take cache into consideration. In case the DNS Servers and Namerservers do not have the requested info they&rsquo;ll reply with a suitable answer.</p>
 <h2 id="examples-using-dig">Examples using DiG<a class="anchor" href="#examples-using-dig">#</a></h2>
-<p>After all the reading its fun time, to see it all happening and to validate the theory. I&rsquo;ve set my DNS server to <code>208.67.222.222</code> and will be using <code>dig</code> utility to carry out a couple of DNS queries in bash shell.</p>
+<p>After all the reading it&rsquo;s fun time, to see it all happening and to validate the theory. I&rsquo;ve set my DNS server to <code>208.67.222.222</code> and will be using <code>dig</code> utility to carry out a couple of DNS queries in bash shell.</p>
 <h3 id="1-simple-dig-query">1. Simple dig query<a class="anchor" href="#1-simple-dig-query">#</a></h3>
 <p><code>dig</code> expects a domain name as an argument and will query for Type A resource records by default. Below is the command <code>dig www.reddit.com</code> and its output.</p>
 <pre><code>neeraj@mrm:~$ dig www.reddit.com 
@@ -215,12 +215,12 @@ reddit.map.fastly.net.	30	IN	A	151.101.1.140
 ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 16713
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
 </code></pre>
-<p>Then will be the querry issued to the DNS Server. Format under Question Section is domain name, DNS Class, Type of RR. Here <code>IN</code> means DNS Class &lsquo;Internet&rsquo;.</p>
+<p>Then will be the query issued to the DNS Server. Column format under Question Section is domain name, DNS Class, Type of resource record. Here <code>IN</code> means DNS Class &lsquo;Internet&rsquo;.</p>
 <pre><code>;; QUESTION SECTION:
 ;www.reddit.com.			IN	A
 </code></pre>
-<p>Question section is followed by the responses in the form of Answer, Authority and Additional section. In this example we just have the Answer Section in which we recieved Type <code>CNAME</code> RR for the queried domain instead of Type <code>A</code> probably because the Type <code>A</code> RR for the domain does not exist and this is what the DNS Server found relative to the query.
-<code>CNAME</code> specify aliases so basically <code>www.reddit.com.</code> and <code>reddit.map.fastly.net.</code> are two different names for the same thing - if we have IP Address of either then we can connect. The number after the domain name is the number of seconds a host can cache the resource record. After <code>CNAME</code> we have Type <code>A</code> RR for <code>reddit.map.fastly.net.</code> This just gave us 4 IP addresses with which we can access <code>www.reddit.com.</code></p>
+<p>Question section is followed by the responses in the form of Answer, Authority and Additional section. In this example we just have the Answer Section in which we recieved Type <code>CNAME</code> resource record for the queried domain instead of Type <code>A</code>, probably because the Type <code>A</code> resource record for the domain does not exist and this is what the DNS Server found relative to the query.
+<code>CNAME</code> specify aliases so basically <code>www.reddit.com.</code> and <code>reddit.map.fastly.net.</code> are two different names for the same thing. The number after the domain name is the number of seconds a host can cache the resource record. After <code>CNAME</code> we have Type <code>A</code> resource record for <code>reddit.map.fastly.net.</code> This just gave us 4 IP addresses with which we can access <code>www.reddit.com.</code></p>
 <pre><code>;; ANSWER SECTION:
 www.reddit.com.		254	IN	CNAME	reddit.map.fastly.net.
 reddit.map.fastly.net.	30	IN	A	151.101.65.140
@@ -228,14 +228,14 @@ reddit.map.fastly.net.	30	IN	A	151.101.129.140
 reddit.map.fastly.net.	30	IN	A	151.101.193.140
 reddit.map.fastly.net.	30	IN	A	151.101.1.140
 </code></pre>
-<p>At last we have some stats about the the whole operation. The time it took for the operation, the DNS Server which was queried.</p>
+<p>At last we have some stats about the the whole operation. The time it took for the operation, the DNS Server which was queried, etc.</p>
 <pre><code>;; Query time: 84 msec
 ;; SERVER: 208.67.222.222#53(208.67.222.222)
 ;; WHEN: Tue Sep 01 00:16:04 IST 2020
 ;; MSG SIZE  rcvd: 142
 </code></pre>
 <h3 id="2-more-on-cname">2. More on <code>CNAME</code><a class="anchor" href="#2-more-on-cname">#</a></h3>
-<p>You may know that you can even open facebook from <code>www.fb.com</code>. Lets see whats happening behind.</p>
+<p>You may know that you can even open facebook from <code>www.fb.com</code>. Lets see whats happening behind. I encourage you to go through the output.</p>
 <pre><code>neeraj@mrm:~$ dig www.fb.com 
 
 ; &lt;&lt;&gt;&gt; DiG 9.16.1-Ubuntu &lt;&lt;&gt;&gt; www.fb.com
@@ -259,7 +259,8 @@ star-mini.c10r.facebook.com. 60	IN	A	157.240.198.35
 ;; WHEN: Sun Sep 06 23:47:27 IST 2020
 ;; MSG SIZE  rcvd: 111
 </code></pre>
-<p>Ah! So <code>www.facebook.com</code> is just an alias of <code>www.fb.com</code>. We can even directly query for a certain resource record by putting the Type after the domain name.</p>
+<p>Ah! So in the Answer section we can see that  <code>www.facebook.com</code> is just an alias of <code>www.fb.com</code>.</p>
+<p>We can even directly query for a certain resource record by putting the Type after the domain name.</p>
 <pre><code>neeraj@mrm:~$ dig www.fb.com CNAME
 
 ; &lt;&lt;&gt;&gt; DiG 9.16.1-Ubuntu &lt;&lt;&gt;&gt; www.fb.com CNAME
@@ -282,7 +283,9 @@ www.fb.com.		570	IN	CNAME	www.facebook.com.
 ;; MSG SIZE  rcvd: 66
 </code></pre>
 <h3 id="3-complete-dns-resolution">3. Complete DNS resolution<a class="anchor" href="#3-complete-dns-resolution">#</a></h3>
-<p>Dig utility has an interesting flag <code>+trace</code>, which can emulate a how a DNS Server resolves a query. Dig would iteratively resolve the domain name being query starting from the root domain. You can compare this with the diagram above. In the end we get our result - alias of <code>www.duckduckgo.com.</code> and the Type A resource record associated with the alias. You may ignore the <code>NSEC3</code> and <code>RRSIG</code> resource records in this example.</p>
+<p>Dig utility has an interesting flag <code>+trace</code>, which can emulate a how a DNS Server resolves a query. Dig would iteratively resolve the domain name in query starting from the root domain. You can even compare this with the diagram above. In the end we get our result - alias of <code>www.duckduckgo.com.</code> and the Type A resource record associated with the alias.
+You are requested to go through the output. With the <code>+trace</code> flag the output only contains the responses and at the bottom of each section of responses there is the FQDN of the DNS server who replied or was queried.</p>
+<p>Ignore the <code>NSEC3</code> and <code>RRSIG</code> resource records for now.</p>
 <pre><code>neeraj@mrm:~$ dig www.duckduckgo.com  +trace
 
 ; &lt;&lt;&gt;&gt; DiG 9.16.1-Ubuntu &lt;&lt;&gt;&gt; www.duckduckgo.com +trace
@@ -338,6 +341,14 @@ www.duckduckgo.com.	86400	IN	CNAME	duckduckgo.com.
 duckduckgo.com.		200	IN	A	40.81.94.43
 ;; Received 77 bytes from 148.163.196.65#53(ns02.quack-dns.com) in 187 ms
 </code></pre>
+<p>Output explanation :</p>
+<ul>
+<li>Dig starts with asking the DNS Server for the nameservers of the root domain.</li>
+<li>One of the nameserver of root domain(<code>h.root-servers.net</code>) is then queried for the <code>com.</code> nameservers.</li>
+<li>Then the <code>com.</code> nameserver <code>h.root-servers.net</code> is queried for the nameservers of <code>duckduckgo.com.</code> and the dig gets the requested response.</li>
+<li>Finally <code>ns02.quack-dns.com</code> nameserver replies with <code>CNAME</code> and <code>A</code> Type resource records. If you notice the <code>CNAME</code> resource records here, there is no need to add <code>www.</code> in front of <code>duckduckgo.com</code> to access the website.</li>
+</ul>
+<p>Lo and behold! I hope that you now understand DNS.</p>
 
 
               
@@ -348,9 +359,6 @@ duckduckgo.com.		200	IN	A	40.81.94.43
     
     <li class="tag__item">
         <a class="tag__link" href="/tags/dns/">dns</a>
-    </li>
-    <li class="tag__item">
-        <a class="tag__link" href="/tags/domain/">domain</a>
     </li>
     <li class="tag__item">
         <a class="tag__link" href="/tags/dig/">dig</a>
