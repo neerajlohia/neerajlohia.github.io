@@ -67,7 +67,7 @@
       "datePublished": "2020-08-20 13:17:14 \u002b0530 IST",
       "dateModified" : "2020-08-20 13:17:14 \u002b0530 IST",
       "url" : "\/blog\/how-dns-really-works\/",
-      "wordCount" : "2731",
+      "wordCount" : "2755",
       "keywords" : ["Blog"]
     }
   
@@ -114,8 +114,9 @@
           </header>
           <article class="post__content">
               
+<p>Internet is a big place. A large set of protocols and physical infrastructure is in place that enables us to use it with such an ease. DNS is a vast topic. In this article I will cover the basic understanding around DNS, it&rsquo;s components and catch DNS resolution in action.</p>
 <h2 id="purpose-of-dns">Purpose of DNS<a class="anchor" href="#purpose-of-dns">#</a></h2>
-<p>Internet is a big place. A large set of protocols and physical infrastructure is in place that enables us to use it at such an ease. Every device connected to the internet has an IP address assigned to it. This device can host a plethora of services which anyone over the internet can access by connecting to it using it&rsquo;s IP address.
+<p>Every device connected to the internet has an IP address assigned to it. This device can host a plethora of services which anyone over the internet can access by connecting to it using it&rsquo;s IP address.
 For example, Wikipedia has made its website accessible on IP address 103.102.166.224 (the IP address might be different for you), but it is not convenient to memorize a long string of numbers so that I can reach out to it. Pffff.</p>
 <p>This would straight away put limitations on accessing all the cool stuff on the Internet. It will be simpler to use <code>wikipedia.org</code> instead of an IP address. We would rather have some sort of a mechanism which would remember these mappings for us. So just like a Contact list in a phone, DNS (short for Domain Name System) maintains bunch of information about the server name(or rather domain name) which is invisibly queried by your web browser whenever you open any website.</p>
 <p>Technically DNS is a <mark>distributed, hierarchical database</mark> spread across the internet with mechanisms to interact - insert and retrieve information - with this database. Information in DNS is stored as resource records (RR) which is essentially a mapping between the domain name and some data. Some resource record types are :</p>

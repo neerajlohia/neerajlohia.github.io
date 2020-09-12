@@ -18,7 +18,8 @@
       <pubDate>Thu, 20 Aug 2020 13:17:14 +0530</pubDate>
       
       <guid>/blog/how-dns-really-works/</guid>
-      <description>Purpose of DNS Internet is a big place. A large set of protocols and physical infrastructure is in place that enables us to use it at such an ease. Every device connected to the internet has an IP address assigned to it. This device can host a plethora of services which anyone over the internet can access by connecting to it using it&amp;rsquo;s IP address. For example, Wikipedia has made its website accessible on IP address 103.</description>
+      <description>Internet is a big place. A large set of protocols and physical infrastructure is in place that enables us to use it with such an ease. DNS is a vast topic. In this article I will cover the basic understanding around DNS, it&amp;rsquo;s components and catch DNS resolution in action.
+Purpose of DNS Every device connected to the internet has an IP address assigned to it. This device can host a plethora of services which anyone over the internet can access by connecting to it using it&amp;rsquo;s IP address.</description>
     </item>
     
   </channel>
