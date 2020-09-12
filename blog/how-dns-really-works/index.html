@@ -67,7 +67,7 @@
       "datePublished": "2020-08-20 13:17:14 \u002b0530 IST",
       "dateModified" : "2020-08-20 13:17:14 \u002b0530 IST",
       "url" : "\/blog\/how-dns-really-works\/",
-      "wordCount" : "2755",
+      "wordCount" : "2761",
       "keywords" : ["Blog"]
     }
   
@@ -206,7 +206,7 @@ reddit.map.fastly.net.	30	IN	A	151.101.1.140
 ;; WHEN: Tue Sep 01 00:16:04 IST 2020
 ;; MSG SIZE  rcvd: 142
 </code></pre>
-<p>Output explaination :</p>
+<p>Output explanation :</p>
 <p>The below snippet of the above output lists the DiG version, query issued, some command line options which were passed to dig.</p>
 <pre><code>; &lt;&lt;&gt;&gt; DiG 9.16.1-Ubuntu &lt;&lt;&gt;&gt; www.reddit.com
 ;; global options: +cmd
@@ -349,7 +349,7 @@ duckduckgo.com.		200	IN	A	40.81.94.43
 <li>Then the <code>com.</code> nameserver <code>h.root-servers.net</code> is queried for the nameservers of <code>duckduckgo.com.</code> and the dig gets the requested response.</li>
 <li>Finally <code>ns02.quack-dns.com</code> nameserver replies with <code>CNAME</code> and <code>A</code> Type resource records. If you notice the <code>CNAME</code> resource records here, there is no need to add <code>www.</code> in front of <code>duckduckgo.com</code> to access the website.</li>
 </ul>
-<p>Lo and behold! I hope that you now understand DNS.</p>
+<p>Lo and behold! I hope that this article helped you understand the basic workings of DNS.</p>
 
 
               
